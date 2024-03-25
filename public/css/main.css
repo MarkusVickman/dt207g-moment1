@@ -1,0 +1,238 @@
+/*Styling av en klass för menylänkar*/
+.menu-link {
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    height: 20px;
+    background-color: white;
+    border-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+
+.menu-link:hover,
+#btn-open:hover,
+#btn-close:hover {
+    background-color: rgb(223, 223, 223);
+}
+
+/*Styling av huvudmeny*/
+nav {
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background-color: white;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    display: none;
+    border-width: 0;
+}
+
+nav ul {
+    margin-top: 0px;
+    padding: 0;
+}
+
+
+/*Header storlek*/
+header {
+    height: 60px;
+    max-width: 100%;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+}
+
+body {
+    background-color: rgb(101, 120, 101);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#btn-open,
+#btn-close {
+    display: block;
+    font-size: 1.3em;
+    font-weight: 500;
+    background-color: white;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.5);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 5px;
+    height: 40px;
+    top: 0px;
+}
+
+#btn-open {
+    width: 100px;
+}
+
+#btn-close {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.open-menu-text,
+.close-menu-text {
+    display: inline-block;
+}
+
+.open-menu-text {
+    position: relative;
+    top: -7px;
+    left: 5px;
+}
+
+/*styling av stäck som är vridna till ett kors i stängknappen i menyn*/
+.bars-cross1 {
+    display: block;
+    width: 20px;
+    height: 3px;
+    background-color: darkred;
+    margin: 5px 0;
+    transform: rotate(45deg);
+    position: relative;
+    margin-top: 5px;
+}
+
+/*styling av stäck som är vridna till ett kors i stängknappen i menyn*/
+.bars-cross2 {
+    display: block;
+    width: 20px;
+    height: 3px;
+    background-color: darkred;
+    margin: 5px 0;
+    transform: rotate(-45deg);
+    margin-top: -8px;
+}
+
+/*styling av de tre strecken i menyknapp öppna*/
+.bars {
+    display: block;
+    width: 20px;
+    height: 3px;
+    background-color: darkgreen;
+    margin: 5px 0;
+}
+
+.bars-menu {
+    display: inline-block;
+}
+
+input {
+    margin-bottom: 10px;
+    width: 210px;
+}
+
+
+/*begränsar vidd på main*/
+main {
+    width: 700px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*responsivt formulär*/
+form {
+    width: 210px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Styling av knappar*/
+/*button, .remove.btn {
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+    border-radius: 10px;
+    border-style: none;
+    font-size: 1.1em;
+    box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.2);
+    margin-left: 5px;
+    margin-right: 5px;
+    /*För att knapptext ska visas korrekt i safari på iphone*/
+/* -webkit-text-fill-color:black;
+}*/
+
+/*Hover effekt till knappar*/
+/*button:hover{
+    background-color: rgb(186, 244, 225);
+    box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.4);
+}*/
+
+/*styling av div till inläggen*/
+.newdiv {
+    background-color: rgb(200, 194, 137);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/*hover effekt*/
+.newdiv:hover {
+    background-color: rgb(187, 180, 120);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/*Padding till raderna i vardera inlägg
+.edit{
+    padding: 5px;
+}/
+
+/*hover effekt för att visa att det är inputfält
+.edit:hover, .edit:focus {
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+    border-radius: 5px;
+}*/
+
+/*media querie för att navigeringen ska visas annorlunda på större skärmar*/
+@media (min-width: 700px) {
+
+    nav {
+        top: 20px;
+        display: block;
+        height: 42px;
+        position: -webkit-sticky;
+        background-color: transparent;
+    }
+
+
+    nav ul {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    nav li {
+        display: inline-block;
+        margin-left: 20px;
+    }
+
+
+    .center-menu {
+        margin-left: 50%;
+        transform: translate(-50%);
+        width: 390px;
+    }
+
+    .menu-link {
+        margin: auto;
+        margin-top: 2px;
+        padding: 8px;
+        border-radius: 5px;
+        display: block;
+    }
+
+    #btn-open,
+    #btn-close {
+        display: none;
+    }
+}
