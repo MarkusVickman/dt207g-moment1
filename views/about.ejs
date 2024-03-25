@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lägg till kurs</title>
+</head>
+<body>
+        <!--Header med logotyp och knapp för att öppna mobilmeny-->
+        <header>
+            <!--Logotypen ändras vid temabyte och laddas in i sass partial _theme-->
+            <a href="index.html">
+                <div class="logo"></div>
+            </a>
+            <button id="btn-open">
+                <span>
+                    <span class="bars"></span>
+                    <span class="bars"></span>
+                    <span class="bars"></span>
+                </span>
+            </button>
+        </header>
+        <!--Navigeringen ligger under headern för att dynamiskt fastna längst upp istället för header vid scrollande-->
+        <nav id="main-nav">
+            <button id="btn-close">
+                <span class="menu-icon">
+                    <span class="bars-cross1"></span>
+                    <span class="bars-cross2"></span>
+                </span>
+                <span class="menu-text">
+                    Stäng meny
+                </span>
+            </button>
+            <div class="center-menu">
+                <ul>
+                    <li><a href="index.html" class="menu-link" id="menu-underline">Startsida</a></li>
+                    <li><a href="sass.html" class="menu-link">SASS</a></li>
+                    <li><a href="#" class="menu-link ph-link">Placeholder</a></li>
+                    <li><a href="#" class="menu-link ph-link">Placeholder</a></li>
+                    <li><a href="#" class="menu-link ph-link">Placeholder</a></li>
+                </ul>
+            </div>
+        </nav>
+</body>
+</html>
