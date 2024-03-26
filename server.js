@@ -2,9 +2,9 @@
 const mysql = require("mysql");
 const connection = mysql.createConnection({
     host: "localhost",
-    user: "root",
-    password: "",
-    database: ""
+    user: "dt207g-m1",
+    password: "moment1",
+    database: "dt207g-m1"
 });
 
 
@@ -12,13 +12,15 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const bodyParser = require("body-parser");
-/*
-connection.connect((err) =>{
-    if(err){
+
+connection.connect((err) => {
+    if (err) {
         console.error("Connection failed big!: " + err);
         throw err;
     }
-});*/
+
+    console.log("Connected to MySQL!");
+});
 
 app.set("view engine", "ejs");
 app.use(express.static("public")); //Statiska filer
@@ -39,6 +41,20 @@ app.get("/course", (req, res) => {
         newSyllabus: ""
     });
 })
+
+connection.query(`DROP TABLE IF EXISTS COURSES`);
+connection.query(`CREATE TABLE COURSES (
+    COURSE_ID           INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    COURSE_CODE         VARCHAR(10),
+    COURSE_NAME         VARCHAR(100),
+    PROGRESSION         VARCHAR(2),
+    SYLLABUS            VARCHAR(150));`, (err, result) => {
+    if (err) {
+        throw err;
+    }
+
+    console.table("Database tables: " + result);
+    });
 
 app.post("/course", (req, res) => {
     //Formulärdata
@@ -63,16 +79,24 @@ app.post("/course", (req, res) => {
     }
 
     if (inputErrors.length === 0) {
+        connection.query(`INSERT INTO COURSES (COURSE_CODE, COURSE_NAME, PROGRESSION, SYLLABUS) VALUES ('DT057G','Webbutveckling 1','A','https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT057G/');
+        INSERT INTO COURSES (COURSE_CODE, COURSE_NAME, PROGRESSION, SYLLABUS) VALUES ('DT084G','Introduktion till programmering i JavaScript','A','https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT084G/');`, (err, result) => {
+            if (err) {
+                throw err;
+            }
+        
+            console.table("Database inserts: " + result);
+        });
         res.render("index");
+    } else {
+        res.render("course", {
+            inputErrors: inputErrors,
+            newCode: newCode,
+            newName: newName,
+            newProgression: newProgression,
+            newSyllabus: newSyllabus
+        });
     }
-
-    res.render("course", {
-        inputErrors: inputErrors,
-        newCode: newCode,
-        newName: newName,
-        newProgression: newProgression,
-        newSyllabus: newSyllabus
-    });
 });
 
 //route
