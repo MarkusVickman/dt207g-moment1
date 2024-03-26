@@ -1,79 +1,85 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!--Länk till CSS-->
-        <link rel="stylesheet" href="/css/main.css">
-        <!--Länk till javascript mobilmeny-->
-        <script type="module" src="/js/menu.js"></script>
+    <!--Länk till CSS-->
+    <link rel="stylesheet" href="/css/main.css">
+    <!--Länk till javascript mobilmeny-->
+    <script type="module" src="/js/menu.js"></script>
     <title>Lägg till kurs</title>
 </head>
 </head>
+
 <body>
-        <!--Header med logotyp och knapp för att öppna mobilmeny-->
-        <header>
-            <!--Logotypen ändras vid temabyte och laddas in i sass partial _theme-->
-            <a href="index.html">
-                <div class="logo"></div>
-            </a>
-            <button id="btn-open">
+    <!--Header med logotyp och knapp för att öppna mobilmeny-->
+    <header>
+        <!--Logotypen ändras vid temabyte och laddas in i sass partial _theme-->
+        <a href="index.html">
+            <div class="logo"></div>
+        </a>
+        <button id="btn-open">
+            <span class="bars-menu">
+                <span class="bars"></span>
+                <span class="bars"></span>
+                <span class="bars"></span>
+            </span>
+            <span class="open-menu-text">
+                Meny
+            </span>
+        </button>
+        <nav id="main-nav">
+            <button id="btn-close">
                 <span class="bars-menu">
-                    <span class="bars"></span>
-                    <span class="bars"></span>
-                    <span class="bars"></span>
+                    <span class="bars-cross1"></span>
+                    <span class="bars-cross2"></span>
                 </span>
-                <span class="open-menu-text">
+                <span class="close-menu-text">
                     Meny
                 </span>
             </button>
-            <nav id="main-nav">
-                <button id="btn-close">
-                    <span class="bars-menu">
-                        <span class="bars-cross1"></span>
-                        <span class="bars-cross2"></span>
-                    </span>
-                    <span class="close-menu-text">
-                        Meny
-                    </span>
-                </button>
-                <div class="center-menu">
-                    <ul>
-                        <li><a href="/" class="menu-link" id="menu-underline">Startsida</a></li>
-                        <li><a href="/course" class="menu-link">Lägg till kurs</a></li>
-                        <li><a href="/about" class="menu-link ph-link">Om sidan</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <main>
-            <main id="main">
-                <h1>Lagra dina kurser</h1>
-                <p>På den här webbplatsen kan du lagra kurser du har avslutat eller varför
-                    inte lista upp kurser som du har tänkt att studera. Fyll i kurskod, kursnamn,
-                    URL till kursplanen och om det är en A, B, C eller AV kurs. Det går även att 
-                    redigera kursinformationen direkt på respektive rad och allt sparas lokalt på din dator.</p>
-                    <!--Formulär för att skriva in kurser som lagras till lokalstorage. URLEN fungerar smidigare sparad som text för mobilanvändare-->
-                <form method="post" id="courseform">
-                    <label for="code">Kurskod:</label><br>
-                    <input type="text" id="code" required>
-                    <br>
-                    <label for="name">Kursnamn:</label><br>
-                    <input type="text" id="name" required>
-                    <br>
-                    <label for="progression">Progression:</label><br>
-                    <input type="text" id="progression" required>
-                    <br>
-                    <label for="syllabus">Länk till kursplan</label><br>
-                    <input type="text" id="syllabus">
-                    <br>
-                    <button type="submit">Spara</button>       
-                    <button type="button" id="empty-localstorage">Radera listan</button>
-                </form>
-                <!--Meddelande för när formuläret oven fyllts i-->
-                <p id="alert"></p>
-                <p id="alert2"></p>
-            </main>
-        </main>
+            <div class="center-menu">
+                <ul>
+                    <li><a href="/" class="menu-link" id="menu-underline">Startsida</a></li>
+                    <li><a href="/course" class="menu-link">Lägg till kurs</a></li>
+                    <li><a href="/about" class="menu-link ph-link">Om sidan</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main id="main">
+        <h1>Lagra dina kurser</h1>
+        <p>På den här webbplatsen kan du lagra kurser du har avslutat eller varför
+            inte lista upp kurser som du har tänkt att studera. Fyll i kurskod, kursnamn,
+            URL till kursplanen och om det är en A, B, C eller AV kurs. Det går även att
+            redigera kursinformationen direkt på respektive rad och allt sparas lokalt på din dator.</p>
+        <!--Formulär för att skriva in kurser som lagras till lokalstorage. URLEN fungerar smidigare sparad som text för mobilanvändare-->
+        <form method="post" action="/course" id="courseform">
+            <label for="code">Kurskod:</label><br>
+            <input type="text" id="code" name="code" value=<%=newCode %>>
+            <br>
+            <label for="name">Kursnamn:</label><br>
+            <input type="text" id="name" name="name" value=<%=newName %>>
+            <br>
+            <label for="progression">Progression:</label><br>
+            <input type="text" id="progression" name="progression" value=<%=newProgression %>>
+            <br>
+            <label for="syllabus">Länk till kursplan</label><br>
+            <input type="text" id="syllabus" name="syllabus" value=<%=newSyllabus %>>
+            <br>
+            <button type="submit">Spara</button>
+            <button type="button" id="empty-localstorage">Radera listan</button>
+        </form>
+        <!--Meddelande för när formuläret oven fyllts i-->
+        <% if(locals.inputErrors) { %>
+        <ul>
+            <% inputErrors.forEach((error) => { %>
+                <li><%= error %></li>
+            <% }); %>
+        </ul>
+        <% } %>
+    </main>
 </body>
+
 </html>
