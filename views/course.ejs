@@ -54,7 +54,7 @@
                     URL till kursplanen och om det är en A, B, C eller AV kurs. Det går även att 
                     redigera kursinformationen direkt på respektive rad och allt sparas lokalt på din dator.</p>
                     <!--Formulär för att skriva in kurser som lagras till lokalstorage. URLEN fungerar smidigare sparad som text för mobilanvändare-->
-                <form id="courseform">
+                <form method="post" id="courseform">
                     <label for="code">Kurskod:</label><br>
                     <input type="text" id="code" required>
                     <br>
@@ -73,10 +73,6 @@
                 <!--Meddelande för när formuläret oven fyllts i-->
                 <p id="alert"></p>
                 <p id="alert2"></p>
-                <article>
-                    <h2>Din kurslista</h2>
-                    <div id="courselist"></div>
-                </article>
             </main>
         </main>
 </body>

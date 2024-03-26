@@ -34,9 +34,9 @@ app.get("/course", (req, res) => {
     res.render("course");
 });
 
-/*app.post("/", (req, res) => {
+app.post("/course", (req, res) => {
     res.render("index");
-});*/
+});
 
 //route
 app.get("/about", (req, res) => {
