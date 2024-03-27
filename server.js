@@ -28,7 +28,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //route
 app.get("/", (req, res) => {
-    res.render("index");
+
+    connection.query("SELECT * FROM COURSES;", (err, rows) => {
+        if (err) {
+            console.error(err.message);
+        }
+        res.render("index", {
+            error: "",
+            rows: rows
+        });
+    });
 });
 
 //route
@@ -56,6 +65,18 @@ connection.query(`CREATE TABLE COURSES (
     console.table("Database tables: " + result);
     });
 
+app.get("/delete/:id", (req, res) => {
+    let id = req.params.id;
+    console.log(id);
+    connection.query("DELETE FROM COURSES WHERE COURSE_ID=?;", id, (err) => {
+        if (err) {
+            console.error(err.message);
+        }
+        res.redirect("/");
+    });
+
+});
+
 app.post("/course", (req, res) => {
     //Formulärdata
     let newCode = req.body.code;
@@ -68,26 +89,36 @@ app.post("/course", (req, res) => {
     if (newCode === "") {
         inputErrors.push("Fyll i kurskod.");
     }
+    if (newCode.length > 10) {
+        inputErrors.push("Kurskoden får vara max 10 tecken lång.");
+    }
     if (newName === "") {
         inputErrors.push("Fyll i kursnamn.");
+    }
+    if (newName.length > 100) {
+        inputErrors.push("Kursnamnet får vara max 100 tecken lång.");
     }
     if (newProgression === "") {
         inputErrors.push("Fyll i kursprogression.");
     }
+    if (newProgression.length > 2) {
+        inputErrors.push("Progression får vara max 2 tecken lång.");
+    }
     if (newSyllabus === "") {
         inputErrors.push("Fyll i länk till kursplan.");
     }
+    if (newSyllabus.length > 150) {
+        inputErrors.push("Kurslänken får vara max 150 tecken lång.");
+    }
 
     if (inputErrors.length === 0) {
-        connection.query(`INSERT INTO COURSES (COURSE_CODE, COURSE_NAME, PROGRESSION, SYLLABUS) VALUES ('DT057G','Webbutveckling 1','A','https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT057G/');
-        INSERT INTO COURSES (COURSE_CODE, COURSE_NAME, PROGRESSION, SYLLABUS) VALUES ('DT084G','Introduktion till programmering i JavaScript','A','https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT084G/');`, (err, result) => {
+        connection.query("INSERT INTO COURSES(COURSE_CODE, COURSE_NAME, PROGRESSION, SYLLABUS) VALUES(?,?,?,?)", [newCode, newName, newProgression, newSyllabus], (err, result) => {
             if (err) {
                 throw err;
             }
-        
             console.table("Database inserts: " + result);
         });
-        res.render("index");
+        res.redirect("/");
     } else {
         res.render("course", {
             inputErrors: inputErrors,

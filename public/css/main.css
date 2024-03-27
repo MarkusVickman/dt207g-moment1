@@ -12,13 +12,41 @@
     text-decoration: none;
     color: black;
     font-style: italic;
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+#logo {
+    position: absolute;
+    top:10px;
+    left: 10px;
+    border-radius: 15px;
+    height: 75px;
+    width: 70px;
+    background-color: #000000;
+    z-index: 1;
+}
+
+#logo:hover {
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 30px;
 }
 
 
 .menu-link:hover,
-#btn-open:hover,
+#btn-open:hover {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 20px;
+}
+
+.delete-button:hover,
 #btn-close:hover {
-    background-color: white;
+    background-color: rgba(255, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 20px;
+}
+
+#submit:hover{
+    background-color: rgba(0, 255, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 20px;
 }
 
 /*Styling av huvudmeny*/
@@ -40,10 +68,21 @@ nav ul {
     padding: 0;
 }
 
+#course-list{
+    text-align: left;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#error-format{
+    text-align: left;
+}
+
 
 /*Header storlek*/
 header {
-    height: 60px;
+    height: 80px;
     max-width: 100%;
     width: 100%;
     top: 0;
@@ -54,13 +93,18 @@ body {
     background-color: rgb(248, 248, 248);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #000000;
+    text-align: center;
 }
 
 #btn-open,
-#btn-close {
+#btn-close,
+.delete-button,
+#submit {
     display: block;
-    font-size: 1.3em;
-    font-weight: 500;
+    color: black;
+    font-style: italic;
+    font-size: 1.2em;
+    font-weight: 400;
     background-color: transparent;
     border-width: 1px;
     border-color: rgba(0, 0, 0, 0.5);
@@ -72,6 +116,9 @@ body {
 
 #btn-open {
     width: 100px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 #btn-close {
@@ -83,6 +130,7 @@ body {
 .close-menu-text {
     display: inline-block;
 }
+
 
 .open-menu-text {
     position: relative;
@@ -130,7 +178,6 @@ input {
     margin-bottom: 10px;
     width: 210px;
 }
-
 
 /*begränsar vidd på main*/
 main {
@@ -203,10 +250,9 @@ form {
         top: 20px;
         display: block;
         height: 42px;
-        position: -webkit-sticky;
+        position: absolute;
         background-color: transparent;
     }
-
 
     nav ul {
         margin-top: 0px;
@@ -218,11 +264,10 @@ form {
         margin-left: 20px;
     }
 
-
     .center-menu {
         margin-left: 50%;
         transform: translate(-50%);
-        width: 390px;
+        width: 420px;
     }
 
     .menu-link {
@@ -236,5 +281,9 @@ form {
     #btn-open,
     #btn-close {
         display: none;
+    }
+
+    #logo{
+        z-index: 3;
     }
 }

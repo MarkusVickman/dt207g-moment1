@@ -8,16 +8,16 @@
     <link rel="stylesheet" href="/css/main.css">
     <!--Länk till javascript mobilmeny-->
     <script type="module" src="/js/menu.js"></script>
-    <title>Lägg till kurs</title>
+    <title>Lägg till kurs | Ditt digitala CV</title>
 </head>
 </head>
 
 <body>
     <!--Header med logotyp och knapp för att öppna mobilmeny-->
     <header>
-        <!--Logotypen ändras vid temabyte och laddas in i sass partial _theme-->
-        <a href="index.html">
-            <div class="logo"></div>
+        <!--Logotypen-->
+        <a href="/">
+            <img src="/icon.png" alt="Logotyp" id="logo">
         </a>
         <button id="btn-open">
             <span class="bars-menu">
@@ -68,17 +68,20 @@
             <label for="syllabus">Länk till kursplan</label><br>
             <input type="text" id="syllabus" name="syllabus" value=<%=newSyllabus %>>
             <br>
-            <button type="submit">Spara</button>
-            <button type="button" id="empty-localstorage">Radera listan</button>
+            <button type="submit" id="submit">Spara</button>
         </form>
         <!--Meddelande för när formuläret oven fyllts i-->
+        <div id="error-format">
         <% if(locals.inputErrors) { %>
-        <ul>
-            <% inputErrors.forEach((error) => { %>
-                <li><%= error %></li>
-            <% }); %>
-        </ul>
-        <% } %>
+            <ul>
+                <% inputErrors.forEach((error)=> { %>
+                    <li>
+                        <%= error %>
+                    </li>
+                    <% }); %>
+            </ul>
+            <% } %>
+        </div>
     </main>
 </body>
 
