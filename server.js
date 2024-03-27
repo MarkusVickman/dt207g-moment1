@@ -1,10 +1,13 @@
+//Variable .env
+require('dotenv').config({path: './.env'});
+
 //Lägger till mysql och ansluter
 const mysql = require("mysql");
 const connection = mysql.createConnection({
-    host: "localhost",
-    user: "dt207g-m1",
-    password: "moment1",
-    database: "dt207g-m1"
+    host: process.env.HOST,
+    user: process.env.USER_ACC,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 });
 
 //Lägger till expresserver och middleware: bodyparser för formulär
@@ -29,8 +32,8 @@ connection.connect((err) => {
     console.log("Connected to MySQL!");
 });
 
-//Skapar tabell i databasen och droppar förs om den redan finns
-connection.query(`DROP TABLE IF EXISTS COURSES`);
+//Skapar tabell i databasen och droppar förs om den redan finns    ANVÄNDS EJ
+/*connection.query(`DROP TABLE IF EXISTS COURSES`);
 connection.query(`CREATE TABLE COURSES (
     COURSE_ID           INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     COURSE_CODE         VARCHAR(10),
@@ -42,7 +45,7 @@ connection.query(`CREATE TABLE COURSES (
     }
 
     console.table("Database tables: " + result);
-    });
+    });*/
 
 //Startsidans vy som läser in data från databasen och skickar med svaret.
 app.get("/", (req, res) => {
