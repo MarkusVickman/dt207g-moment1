@@ -47,11 +47,12 @@
             </div>
         </nav>
     </header>
+    <!--Huvudinnehåll-->
     <main>
         <h1>Ditt digitala CV</h1>
         <article id="course-list">
             <h2>Din kurslista</h2>
-            <!--Meddelande för när formuläret oven fyllts i-->
+            <!--Kod som läser in och bygger en lista för varje inlägg i databasen.-->
             <% if(locals.rows.length> 0) { %>
                 <% locals.rows.forEach((row)=> { %>
                     <div>
@@ -73,12 +74,16 @@
                             </a>
                         </li>
                     </ul>
+                    <!--Knapp för att radera inlägg-->
                     <button class="delete-button" onclick="window.location.href='/delete/<%= row.COURSE_ID%>';">Radera</button>
                 </div>
                     <% }); %>
                 <% } %>
         </article>
     </main>
+    <footer>
+        <p>Skapad av Markus Vickman för Moment 1 i DT207G - Backend-baserad webbutveckling</p>
+    </footer>
 </body>
 
 </html>

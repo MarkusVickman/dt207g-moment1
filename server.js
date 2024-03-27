@@ -1,4 +1,4 @@
-
+//Lägger till mysql och ansluter
 const mysql = require("mysql");
 const connection = mysql.createConnection({
     host: "localhost",
@@ -7,12 +7,13 @@ const connection = mysql.createConnection({
     database: "dt207g-m1"
 });
 
-
+//Lägger till expresserver och middleware: bodyparser för formulär
 const express = require("express");
+const bodyParser = require("body-parser");
+//Inställningar för express
 const app = express();
 const port = 3000;
-const bodyParser = require("body-parser");
-
+//Ger meddelande vid anslutning eller vid misslyckad.
 connection.connect((err) => {
     if (err) {
         console.error("Connection failed big!: " + err);
@@ -21,14 +22,13 @@ connection.connect((err) => {
 
     console.log("Connected to MySQL!");
 });
-
+//Lägger till view engine, inställningar för statiska filer samt hur bodyparser ska hantera data.
 app.set("view engine", "ejs");
 app.use(express.static("public")); //Statiska filer
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//route
+//Startsidans vy som läser in data från databasen och skickar med svaret.
 app.get("/", (req, res) => {
-
     connection.query("SELECT * FROM COURSES;", (err, rows) => {
         if (err) {
             console.error(err.message);
@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
     });
 });
 
-//route
+//När vyn för lägg till kurs laddas rensas inputfält och felkoder
 app.get("/course", (req, res) => {
     res.render("course", {
         inputErrors: "",
@@ -51,6 +51,8 @@ app.get("/course", (req, res) => {
     });
 })
 
+//Skapar tabell i databasen och droppar förs om den redan finns
+/*
 connection.query(`DROP TABLE IF EXISTS COURSES`);
 connection.query(`CREATE TABLE COURSES (
     COURSE_ID           INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -63,8 +65,9 @@ connection.query(`CREATE TABLE COURSES (
     }
 
     console.table("Database tables: " + result);
-    });
+    });*/
 
+//När den här länken laddas tas valt id bort ut databasen och startsidan laddas om
 app.get("/delete/:id", (req, res) => {
     let id = req.params.id;
     console.log(id);
@@ -74,18 +77,17 @@ app.get("/delete/:id", (req, res) => {
         }
         res.redirect("/");
     });
-
 });
 
+//Vy för kursformulär
 app.post("/course", (req, res) => {
-    //Formulärdata
+    //Formulärdata läses in till variabler och en array skapas för felkoder
     let newCode = req.body.code;
     let newName = req.body.name;
     let newProgression = req.body.progression;
     let newSyllabus = req.body.syllabus;
     let inputErrors = [];
-
-
+    //Flera if satser för att välja vilka felmeddelanden som ska tar med
     if (newCode === "") {
         inputErrors.push("Fyll i kurskod.");
     }
@@ -110,7 +112,7 @@ app.post("/course", (req, res) => {
     if (newSyllabus.length > 150) {
         inputErrors.push("Kurslänken får vara max 150 tecken lång.");
     }
-
+    //Om fel inte finns skapas en nytt inlägg i databasen och startsidan laddas
     if (inputErrors.length === 0) {
         connection.query("INSERT INTO COURSES(COURSE_CODE, COURSE_NAME, PROGRESSION, SYLLABUS) VALUES(?,?,?,?)", [newCode, newName, newProgression, newSyllabus], (err, result) => {
             if (err) {
@@ -119,7 +121,9 @@ app.post("/course", (req, res) => {
             console.table("Database inserts: " + result);
         });
         res.redirect("/");
-    } else {
+    } 
+    //Om fel finns skrivs alla dessa ut på sidan
+    else {
         res.render("course", {
             inputErrors: inputErrors,
             newCode: newCode,
@@ -130,13 +134,12 @@ app.post("/course", (req, res) => {
     }
 });
 
-//route
+//Skapar vyn för om sidan
 app.get("/about", (req, res) => {
     res.render("about");
 });
 
-//Starta
+//Consolmeddelande om servern startar.
 app.listen(port, () => {
     console.log("Express servern har startat på port:" + port);
 });
-

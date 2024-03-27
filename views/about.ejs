@@ -48,6 +48,7 @@
             </div>
         </nav>
     </header>
+        <!--Huvudinnehåll-->
     <main id="main">
         <h1>Om sidan</h1>
         <p>Webbplatsen är en uppgift i kursen <strong>DT207G - Backend-baserad webbutveckling</strong>. Webbplatsen
@@ -59,9 +60,30 @@
             kurskod
             och kursprogression. Databasen byggdes upp efter ett följande ER-diagram:</p>
         <img src="/img/er.png" alt="ER-diagram för databasen CV">
+        <h3>Utvecklingsmiljö</h3>
+        MySQL har körts i en Apacheserver och jag har utvecklat i IDE'n Visual Studio Code. Uppgiften är skapad som 
+        ett node.js project med följande dependencies:
+        <div id="list-format">
+        <ul>
+            <li>Server: Express</li>
+            <li>Middleware: bodyParser</li>
+            <li>Databas: mySQL</li>
+            <li>Vyhanterare: ejs</li>
+        </ul>
+        </div>
         <h2>Slutsatser</h2>
-        <p></p>
+        <p>Uppgiften har gett mig större förståelse för Backend-baserad webbutveckling. Jag
+             har fortfarande många frågetecken gällande metoder och inställningar av Expresservern. 
+             Utvecklingen av att hämta och lagra data var enklare i denna Backend-baserade lösning än en 
+             liknande lösning jag skapade i TypeScriptkursen(Frontend).
+        </p>
+        <p>Jag ser stora fördelar med Backend-baserad webbutveckling då vi får mer kontroll över säkerkerhet 
+            och kan styra webbplatsen på ett bättre sätt. Det var också smidigt att jobba mot en mySQL-databas.
+        </p>
     </main>
+    <footer>
+        <p>Skapad av Markus Vickman för Moment 1 i DT207G - Backend-baserad webbutveckling</p>
+    </footer>
 </body>
 
 </html>
