@@ -13,6 +13,12 @@ const bodyParser = require("body-parser");
 //Inställningar för express
 const app = express();
 const port = 3000;
+
+//Lägger till view engine, inställningar för statiska filer samt hur bodyparser ska hantera data.
+app.set("view engine", "ejs");
+app.use(express.static("public")); //Statiska filer
+app.use(bodyParser.urlencoded({ extended: true }));
+
 //Ger meddelande vid anslutning eller vid misslyckad.
 connection.connect((err) => {
     if (err) {
@@ -22,10 +28,21 @@ connection.connect((err) => {
 
     console.log("Connected to MySQL!");
 });
-//Lägger till view engine, inställningar för statiska filer samt hur bodyparser ska hantera data.
-app.set("view engine", "ejs");
-app.use(express.static("public")); //Statiska filer
-app.use(bodyParser.urlencoded({ extended: true }));
+
+//Skapar tabell i databasen och droppar förs om den redan finns
+connection.query(`DROP TABLE IF EXISTS COURSES`);
+connection.query(`CREATE TABLE COURSES (
+    COURSE_ID           INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    COURSE_CODE         VARCHAR(10),
+    COURSE_NAME         VARCHAR(100),
+    PROGRESSION         VARCHAR(2),
+    SYLLABUS            VARCHAR(150));`, (err, result) => {
+    if (err) {
+        throw err;
+    }
+
+    console.table("Database tables: " + result);
+    });
 
 //Startsidans vy som läser in data från databasen och skickar med svaret.
 app.get("/", (req, res) => {
@@ -50,22 +67,6 @@ app.get("/course", (req, res) => {
         newSyllabus: ""
     });
 })
-
-//Skapar tabell i databasen och droppar förs om den redan finns
-/*
-connection.query(`DROP TABLE IF EXISTS COURSES`);
-connection.query(`CREATE TABLE COURSES (
-    COURSE_ID           INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    COURSE_CODE         VARCHAR(10),
-    COURSE_NAME         VARCHAR(100),
-    PROGRESSION         VARCHAR(2),
-    SYLLABUS            VARCHAR(150));`, (err, result) => {
-    if (err) {
-        throw err;
-    }
-
-    console.table("Database tables: " + result);
-    });*/
 
 //När den här länken laddas tas valt id bort ut databasen och startsidan laddas om
 app.get("/delete/:id", (req, res) => {
