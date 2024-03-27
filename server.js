@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 connection.connect((err) => {
     if (err) {
         console.error("Connection failed big!: " + err);
-        throw err;
+       // throw err;
     }
 
     console.log("Connected to MySQL!");
