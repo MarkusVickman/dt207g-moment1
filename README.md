@@ -17,6 +17,20 @@ Webbplatsen är en Node.js projekt. Med hjälp av chromiums V8 JavaScript-motor 
 
 ## Databas
 Som databas-tillägg till node.js och Expresservern användes mySQL istället för det officiella mariaDB tillägget. Detta för att jag valde att byta host för min databas till HelioHost i sista sekund. HelioHost använder mariaDB istället för mySQL. Eftersom mariaDB och mySQL är kompatibla med varandra valde jag att inte byta till mariaDB node.js paket. Ändringen till en remote databas krävde att jag dolde informationen om anslutningen och inte commitade dem till GitHub där webbplatsen är versionshanterad. Därför används tillägget dotenv för att komma åt "environmental variables".
+Databasen skapades i HelioHost grafiska interface. För att skapa tabeller anslöt jag till min databas via terminalen och skrev följande SQL-kod:
+
+CREATE TABLE COURSES (
+COURSE_ID           INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+COURSE_CODE         VARCHAR(10),
+COURSE_NAME         VARCHAR(100),
+PROGRESSION         VARCHAR(2),
+SYLLABUS            VARCHAR(150));
+
+Vid nytt inlägg i tabellen körs koden:
+"INSERT INTO COURSES(COURSE_CODE, COURSE_NAME, PROGRESSION, SYLLABUS) VALUES(?,?,?,?)"
+
+Vid bortagning av inlägg i tabellen körs koden:
+"DELETE FROM COURSES WHERE COURSE_ID=?;"
 
 # Slutsatser
 Uppgiften har gett mig större förståelse för Backend-baserad webbutveckling. Jag har fortfarande många frågetecken gällande metoder och inställningar av Expresservern. Utvecklingen av att hämta och lagra data var enklare i denna Backend-baserade lösning än en liknande lösning jag skapade i TypeScriptkursen(Frontend). 
