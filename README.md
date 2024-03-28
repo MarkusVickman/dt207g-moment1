@@ -4,7 +4,7 @@ Webbplatsen är en uppgift i kursen DT207G - Backend-baserad webbutveckling. Web
 Webbplatsen hostat här på Render och lagrar formulär-data i en remote mariaDB-databas. Varje gång startsidan laddas så listas alla kurser från databasen upp. Det går att individuellt ta bort kurser från listan. 
 Databasen CV innehåller enbart en tabell där data lagras individuellt för id, kurskod, kursnamn, länk till kurskod och kursprogression. Databasen byggdes upp efter ett följande ER-diagram:
 
-![alt text](https://github.com/[MarkusVickman]/[dt207g-moment1]/blob/[main]/moment1/public/img/er.png?raw=true)
+![Er-diagram](https://github.com/MarkusVickman/dt207g-moment1/blob/main/public/img/er.png)
 
 ### I den här uppgiften har jag programmerat lösningar i TypeScript som:
 * Läsa in kursinformation från input-fält
