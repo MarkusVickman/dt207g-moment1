@@ -6,14 +6,21 @@ Databasen CV innehåller enbart en tabell där data lagras individuellt för id,
 
 ![Er-diagram](https://github.com/MarkusVickman/dt207g-moment1/blob/main/public/img/er.png)
 
-### I den här uppgiften har jag programmerat lösningar i TypeScript som:
-* Läsa in kursinformation från input-fält
-* Lagra och läsa upp från localstorage
-* Uppdatera inlägg 
-* Transpilera TypeScript till JavaScript med Parcel
+## Node.js
+Webbplatsen är en Node.js projekt. Med hjälp av chromiums V8 JavaScript-motor gör node.js så att JavaScript-kod kan köras på servern. Paketet Express användes för den serverbaserade utvecklingen. Till node.js projektet använder jag följande dependencies:
 
-### Webbplatsen
-På den här webbplatsen kan du lagra kurser du har avslutat eller varför inte lista upp kurser som du har tänkt att studera. Fyll i kurskod, kursnamn, URL till kursplanen och om det är en A, B eller C kurs.
+* Server: Express
+* Middleware: bodyParser
+* Databas: mySQL
+* Vyhanterare: ejs
+* Dölja variabler: dotenv
+
+## Databas
+Som databas-tillägg till node.js och Expresservern användes mySQL istället för det officiella mariaDB tillägget. Detta för att jag valde att byta host för min databas till HelioHost i sista sekund. HelioHost använder mariaDB istället för mySQL. Eftersom mariaDB och mySQL är kompatibla med varandra valde jag att inte byta till mariaDB node.js paket. Ändringen till en remote databas krävde att jag dolde informationen om anslutningen och inte commitade dem till GitHub där webbplatsen är versionshanterad. Därför används tillägget dotenv för att komma åt "environmental variables".
+
+# Slutsatser
+Uppgiften har gett mig större förståelse för Backend-baserad webbutveckling. Jag har fortfarande många frågetecken gällande metoder och inställningar av Expresservern. Utvecklingen av att hämta och lagra data var enklare i denna Backend-baserade lösning än en liknande lösning jag skapade i TypeScriptkursen(Frontend). 
+Jag ser stora fördelar med Backend-baserad webbutveckling då vi får mer kontroll över säkerkerhet och kan styra webbplatsen på ett bättre sätt. Det var också väldigt smidigt att jobba mot en mariaDB-databas. 
 
 ## Markus Vickman
 Jag läser till en högskoleexamen i datateknik med inriktning webbutveckling på mittuniversitet.
