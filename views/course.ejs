@@ -58,21 +58,21 @@
         <!--Formulär för att skriva in kurser som lagras till en mysql databas.-->
         <form method="post" action="/course" id="courseform">
             <label for="code">Kurskod:</label><br>
-            <input type="text" id="code" name="code" value=<%=newCode %>>
+            <input type="text" id="code" placeholder="DT057G" name="code" value=<%=newCode %>>
             <br>
             <label for="name">Kursnamn:</label><br>
-            <input type="text" id="name" name="name" value=<%=newName %>>
+            <input type="text" id="name" placeholder="webbutveckling 1" name="name" value=<%=newName %>>
             <br>
             <label for="progression">Progression:</label><br>
-            <input type="text" id="progression" name="progression" value=<%=newProgression %>>
+            <input type="text" id="progression" placeholder="A" name="progression" value=<%=newProgression %>>
             <br>
             <label for="syllabus">Länk till kursplan</label><br>
-            <input type="text" id="syllabus" name="syllabus" value=<%=newSyllabus %>>
+            <input type="text" id="syllabus" placeholder="https://.../DT057G/" name="syllabus" value=<%=newSyllabus %>>
             <br>
             <button type="submit" id="submit">Spara</button>
         </form>
         <!--Meddelande för när formuläret oven fyllts i fel. Alla fel listas från en array-->
-        <div id="list-format">
+        <div id="list-format-red">
         <% if(locals.inputErrors) { %>
             <ul>
                 <% inputErrors.forEach((error)=> { %>

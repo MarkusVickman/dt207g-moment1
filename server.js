@@ -32,7 +32,7 @@ connection.connect((err) => {
     console.log("Connected to MySQL!");
 });
 
-//Skapar tabell i databasen och droppar förs om den redan finns    ANVÄNDS EJ
+//Skapar tabell i databasen och droppar förs om den redan finns || ANVÄNDS EJ
 /*connection.query(`DROP TABLE IF EXISTS COURSES`);
 connection.query(`CREATE TABLE COURSES (
     COURSE_ID           INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -110,8 +110,8 @@ app.post("/course", (req, res) => {
     if (newProgression.length > 2) {
         inputErrors.push("Progression får vara max 2 tecken lång.");
     }
-    if (newSyllabus === "") {
-        inputErrors.push("Fyll i länk till kursplan.");
+    if (newSyllabus.includes("http") !== true) {
+        inputErrors.push("Kursplanens länk måste börja på http eller https.");
     }
     if (newSyllabus.length > 150) {
         inputErrors.push("Kurslänken får vara max 150 tecken lång.");

@@ -204,9 +204,15 @@ nav ul {
     max-width: 100%;
 }
 
-/*Text åt vänster för li listar på about-sidan och för felmeddelanden under formuläret*/
+/*Text åt vänster för li listar på about-sidan*/
 #list-format{
     text-align: left;
+}
+
+/*Text åt vänster för felmeddelanden under formuläret*/
+#list-format-red{
+    text-align: left;
+    color: rgb(158, 0, 0);
 }
 
 /*Styling av inputfältet*/
