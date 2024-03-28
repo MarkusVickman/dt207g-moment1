@@ -54,15 +54,15 @@
         <p>Webbplatsen är en uppgift i kursen <strong>DT207G - Backend-baserad webbutveckling</strong>. Webbplatsen
             kan spara in kurser som man har läst för att använda till ett digitalt CV eller kanske ännu bättre för att
             lagra intressanta kurser som användaren vill läsa.</p>
-        <p>Webbplatsen lagrar formulär-data i en mysql-databas. Varje gång startsidan laddas så listas alla kurser från
+        <p>Webbplatsen lagrar formulär-data i en mariaDB-databas. Varje gång startsidan laddas så listas alla kurser från
             databasen upp. Det går att individuellt ta bort kurser från listan.</p>
         <p>Databasen CV innehåller enbart en tabell där data lagras individuellt för id, kurskod, kursnamn, länk till
             kurskod
             och kursprogression. Databasen byggdes upp efter ett följande ER-diagram:</p>
         <img src="/img/er.png" alt="ER-diagram för databasen CV">
         <h3>Utvecklingsmiljö</h3>
-        MySQL har körts i en Apacheserver och jag har utvecklat i IDE'n Visual Studio Code. Uppgiften är skapad som 
-        ett node.js project med följande dependencies:
+        <p>Jag har utvecklat i IDE'n Visual Studio Code. Uppgiften är skapad som 
+        ett node.js project med följande dependencies:</p>
         <div id="list-format">
         <ul>
             <li>Server: Express</li>
@@ -71,6 +71,8 @@
             <li>Vyhanterare: ejs</li>
         </ul>
         </div>
+        <p>Som databas-tillägg till node.js och Expresservern användes mySQL istället för det officiella mariaDB tillägget. Detta för att jag valde att byta host för min databas till <a href="https://heliohost.org">HelioHost</a> i sista sekund. HelioHost 
+            använder mariaDB istället för mySQL. Eftersom mariaDB och mySQL är kompatibla med varandra valde jag att inte byta till mariaDB node.js paket.</p>
         <h2>Slutsatser</h2>
         <p>Uppgiften har gett mig större förståelse för Backend-baserad webbutveckling. Jag
              har fortfarande många frågetecken gällande metoder och inställningar av Expresservern. 
@@ -78,7 +80,7 @@
              liknande lösning jag skapade i TypeScriptkursen(Frontend).
         </p>
         <p>Jag ser stora fördelar med Backend-baserad webbutveckling då vi får mer kontroll över säkerkerhet 
-            och kan styra webbplatsen på ett bättre sätt. Det var också smidigt att jobba mot en mySQL-databas.
+            och kan styra webbplatsen på ett bättre sätt. Det var också väldigt smidigt att jobba mot en mariaDB-databas.
         </p>
     </main>
     <footer>
