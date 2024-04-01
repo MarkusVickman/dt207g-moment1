@@ -110,7 +110,7 @@ app.post("/course", (req, res) => {
     if (newProgression.length > 2) {
         inputErrors.push("Progression får vara max 2 tecken lång.");
     }
-    if (newSyllabus.includes("http") !== true) {
+    if (newSyllabus.toLowerCase().includes("http") !== true) {
         inputErrors.push("Kursplanens länk måste börja på http eller https.");
     }
     if (newSyllabus.length > 150) {
